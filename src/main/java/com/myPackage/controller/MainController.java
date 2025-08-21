@@ -19,7 +19,7 @@ public class MainController {
 	@PostMapping("/align")
 	public String alignment(@RequestBody Paths paths) throws IOException {
 
-		String newFilePath = (paths.p1).split(".txt")[0].concat("_byPrittifier.txt");
+		String newFilePath = (paths.p2).split(".txt")[0].concat("_byPrittifier.txt");
 		FileWriter fw = new FileWriter(newFilePath);
 		try {
 			Scanner correctTRAreader = new Scanner(new File(paths.p1));
@@ -29,7 +29,7 @@ public class MainController {
 				String line1 = correctTRAreader.nextLine();
 
 				// if line is comment so put as it is in new file
-				if (line1.contains("#")) {
+				if (line1.startsWith("#")) {
 					fw.write(line1);
 					fw.write('\n');
 				}
